@@ -187,10 +187,10 @@ export default function PathfindingVisualization() {
       <h1 className='text-2xl font-bold mb-4'>Pathfinding Visualization</h1>
 
       <div className='flex flex-col w-full gap-4 mb-4'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+        <div className='grid grid-rows-2 gap-4 justify-center'>
           <div className='flex flex-col gap-2'>
-            <h2 className='text-lg font-semibold'>Tools</h2>
-            <div className='grid grid-cols-2 sm:flex sm:flex-wrap gap-2'>
+            <h2 className='text-lg font-semibold text-center'>Tools</h2>
+            <div className='grid grid-cols-2 sm:flex sm:flex-wrap gap-2 justify-center'>
               <Button
                 variant={selectedTool === 'start' ? 'default' : 'outline'}
                 onClick={() => setSelectedTool('start')}
@@ -235,8 +235,8 @@ export default function PathfindingVisualization() {
           </div>
 
           <div className='flex flex-col gap-2'>
-            <h2 className='text-lg font-semibold'>Actions</h2>
-            <div className='grid grid-cols-2 sm:flex sm:flex-wrap gap-2'>
+            <h2 className='text-lg font-semibold text-center'>Actions</h2>
+            <div className='grid grid-cols-2 sm:flex sm:flex-wrap gap-2 justify-center'>
               <Button
                 onClick={runAStar}
                 disabled={isRunning || !startPosition || !endPosition}
@@ -286,7 +286,7 @@ export default function PathfindingVisualization() {
           </span>
         </div>
 
-        <div className='grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap gap-x-4 gap-y-2 mb-4 text-sm'>
+        <div className='grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap gap-x-4 gap-y-2 mb-4 text-sm justify-center'>
           <div className='flex items-center gap-1'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-white border border-gray-200'></div>
             <span>Empty</span>
