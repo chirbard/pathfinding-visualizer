@@ -197,7 +197,7 @@ export default function PathfindingVisualization() {
 
   return (
     <div className='flex flex-col items-center p-2 sm:p-4 w-full max-w-6xl mx-auto'>
-      <h1 className='text-2xl font-bold mb-4'>Pathfinding Visualization</h1>
+      <h1 className='text-2xl font-bold mb-4'>Pathfinding Visualizer</h1>
 
       <div className='flex flex-col w-full gap-4 mb-4'>
         <div className='grid grid-rows-2 gap-4 justify-center'>
@@ -294,12 +294,9 @@ export default function PathfindingVisualization() {
             disabled={isRunning}
             className='flex-1'
           />
-          <span className='text-sm'>
-            {speed === 10 ? 'Fast' : speed === 200 ? 'Slow' : 'Medium'}
-          </span>
         </div>
 
-        <div className='flex items-center gap-2 mb-4 w-full max-w-xs mx-auto'>
+        <div className='flex items-center gap-2 mb-4 w-full max-w-xs mx-auto justify-center'>
           <span className='text-sm'>Algorithm:</span>
           <select
             className='border border-gray-300 rounded p-1'
@@ -313,27 +310,27 @@ export default function PathfindingVisualization() {
         </div>
 
         <div className='grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap gap-x-4 gap-y-2 mb-4 text-sm justify-center'>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-white border border-gray-200'></div>
             <span>Empty</span>
           </div>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-gray-800'></div>
             <span>Wall</span>
           </div>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-green-500'></div>
             <span>Start</span>
           </div>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-red-500'></div>
             <span>End</span>
           </div>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-blue-200'></div>
             <span>Visited</span>
           </div>
-          <div className='flex items-center gap-1'>
+          <div className='flex items-center gap-1 justify-center'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-yellow-400'></div>
             <span>Path</span>
           </div>

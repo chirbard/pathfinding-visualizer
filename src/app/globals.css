@@ -120,3 +120,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+select {
+  font-family: 'Open Sans', sans-serif;
+}
