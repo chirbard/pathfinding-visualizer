@@ -3,17 +3,11 @@
 import { useState, useEffect } from 'react';
 import { Play, Eraser, Flag, MapPin, Square } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import AStar from './aStarAlgorithm';
+import AStar from './pathfinding-algorithms/a-star-algorithm';
+import BFS from './pathfinding-algorithms/breath-first-search';
 
 // Cell types
-export type CellType =
-  | 'empty'
-  | 'wall'
-  | 'start'
-  | 'end'
-  | 'visited'
-  | 'path'
-  | 'current';
+export type CellType = 'empty' | 'wall' | 'start' | 'end' | 'visited' | 'path';
 
 // Tool types
 type ToolType = 'start' | 'end' | 'wall' | 'eraser';
@@ -113,11 +107,7 @@ export default function PathfindingVisualization() {
 
     for (let i = 0; i < gridSize.rows; i++) {
       for (let j = 0; j < gridSize.cols; j++) {
-        if (
-          newGrid[i][j] === 'visited' ||
-          newGrid[i][j] === 'path' ||
-          newGrid[i][j] === 'current'
-        ) {
+        if (newGrid[i][j] === 'visited' || newGrid[i][j] === 'path') {
           newGrid[i][j] = 'empty';
         }
       }
@@ -130,6 +120,8 @@ export default function PathfindingVisualization() {
     setGrid(newGrid);
     setIsFinished(false);
   };
+
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState('aStar');
 
   const runAStar = () => {
     AStar(
@@ -144,6 +136,29 @@ export default function PathfindingVisualization() {
       setIsFinished,
       gridSize
     );
+  };
+
+  const runBFSStar = () => {
+    BFS(
+      startPosition,
+      endPosition,
+      isRunning,
+      setIsRunning,
+      resetVisualization,
+      grid,
+      setGrid,
+      speed,
+      setIsFinished
+    );
+  };
+
+  const runAlgorithm = () => {
+    if (selectedAlgorithm === 'aStar') {
+      runAStar();
+    }
+    if (selectedAlgorithm === 'bfs') {
+      runBFSStar();
+    }
   };
 
   // Clear the entire grid
@@ -173,8 +188,6 @@ export default function PathfindingVisualization() {
         return 'bg-red-500';
       case 'visited':
         return 'bg-blue-200';
-      case 'current':
-        return 'bg-blue-400';
       case 'path':
         return 'bg-yellow-400';
       default:
@@ -238,7 +251,7 @@ export default function PathfindingVisualization() {
             <h2 className='text-lg font-semibold text-center'>Actions</h2>
             <div className='grid grid-cols-2 sm:flex sm:flex-wrap gap-2 justify-center'>
               <Button
-                onClick={runAStar}
+                onClick={runAlgorithm}
                 disabled={isRunning || !startPosition || !endPosition}
                 className='flex items-center justify-center gap-1 px-2 sm:px-3'
                 size='sm'
@@ -286,6 +299,19 @@ export default function PathfindingVisualization() {
           </span>
         </div>
 
+        <div className='flex items-center gap-2 mb-4 w-full max-w-xs mx-auto'>
+          <span className='text-sm'>Algorithm:</span>
+          <select
+            className='border border-gray-300 rounded p-1'
+            disabled={isRunning}
+            value={selectedAlgorithm}
+            onChange={(e) => setSelectedAlgorithm(e.target.value)}
+          >
+            <option value='aStar'>A* Search</option>
+            <option value='bfs'>Breadth First Search</option>
+          </select>
+        </div>
+
         <div className='grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap gap-x-4 gap-y-2 mb-4 text-sm justify-center'>
           <div className='flex items-center gap-1'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-white border border-gray-200'></div>
@@ -306,10 +332,6 @@ export default function PathfindingVisualization() {
           <div className='flex items-center gap-1'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-blue-200'></div>
             <span>Visited</span>
-          </div>
-          <div className='flex items-center gap-1'>
-            <div className='w-3 h-3 sm:w-4 sm:h-4 bg-blue-400'></div>
-            <span>Current</span>
           </div>
           <div className='flex items-center gap-1'>
             <div className='w-3 h-3 sm:w-4 sm:h-4 bg-yellow-400'></div>

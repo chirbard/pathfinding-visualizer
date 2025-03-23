@@ -152,7 +152,7 @@ const AStar = async (
             newGrid[neighborRow][neighborCol] !== 'start' &&
             newGrid[neighborRow][neighborCol] !== 'end'
           ) {
-            newGrid[neighborRow][neighborCol] = 'current';
+            newGrid[neighborRow][neighborCol] = 'visited';
           }
         }
       }
