@@ -197,7 +197,17 @@ export default function PathfindingVisualization() {
 
   return (
     <div className='flex flex-col items-center p-2 sm:p-4 w-full max-w-6xl mx-auto'>
-      <h1 className='text-2xl font-bold mb-4'>Pathfinding Visualizer</h1>
+      <div className='header flex items-center gap-4 justify-center mb-4'>
+        <h1 className='text-2xl font-bold '>Pathfinding Visualizer</h1>
+        <a
+          href='https://github.com/chirbard/pathfinding-visualizer'
+          target='_blank'
+          rel='noopener'
+          className='w-6'
+        >
+          <img src='/github-mark.svg' alt='github-mark' />
+        </a>
+      </div>
 
       <div className='flex flex-col w-full gap-4 mb-4'>
         <div className='grid grid-rows-2 gap-4 justify-center'>
